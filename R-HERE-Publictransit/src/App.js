@@ -14,10 +14,6 @@ import {Header,HeaderName} from "carbon-components-react/lib/components/UIShell"
 //import { HeaderContainer, Modal } from 'carbon-components-react';
 //import {Header} from 'carbon-components-react';
 //import { SkipToContent} from 'carbon-components-react';
-
-import Test from './components/trial';
-
-
 // import Tablegen from './components/tablegen';
 
 function App() {
