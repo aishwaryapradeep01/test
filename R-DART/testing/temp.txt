@@ -1,0 +1,196 @@
+import './App.css';
+import React, { useState } from 'react'
+// import {GetRequestSetHeaders} from './service';
+
+// import {Getreq} from './trial';
+
+import {GetRequest} from './trial';
+
+function App() {
+  
+  const [q, setq] = useState('')
+  //const [error, setError] = useState(false)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('hello world')
+  }
+
+  return (
+    // <div className="App">
+    //   <h1> HERE Geocoding </h1>
+    //   <div>
+    //     <h2>Area to Coordinates</h2>
+
+    //     <GetRequest q="berlin" />
+    //   </div>
+
+    //   {/* <h2>{GetRequestSetHeaders}</h2> */}
+    //   {/* <GetRequestSetHeaders /> */}
+
+
+    // </div>
+    
+    <section >
+
+        <h3>HERE Geocoding</h3>
+
+        <GetRequest q="berlin" />
+        <form onSubmit={getGeocode}>
+          <input type='text' value={q} />
+          <button className='btn' type='submit'>
+            Get Coordinates
+          </button>
+        </form>
+      </section>
+  );
+}
+
+export default App;
+
+
+  function getLoc(q){
+    <GetRequest q = "berlin" />
+  }
+      <div className="App">
+      <h1> HERE Geocoding </h1>
+
+      {/* <GetRequest q = "berlin" /> */}
+
+       <form >
+          <input type='text' />
+          <button className='btn' type='submit' onSubmit={getLoc}>
+            Get Coordinates
+          </button>
+        </form>
+
+    </div>
+
+
+    import React from 'react'
+
+
+export class Geocode extends React.Component {
+
+    state = {
+        value: "",
+        data : ""
+    };
+
+    getValue = (event) => {
+        //console.log("Hello");
+
+        this.setState({value : event.target.value})
+
+
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const value = this.state.value;
+
+        console.log("Submitted value: ", value);
+        //let data = "qwerty"
+    }
+
+
+
+
+    render() {
+        return (
+            <>
+                <h3>Area to coordinates</h3>
+
+                <form action="">
+                    <input type = "text" onChange = {this.getValue}/>
+                    <button onClick = {this.handleSubmit}>Get Coordinates</button>
+                </form>
+
+                <h5>Some value in the state funcs: </h5>
+                <h5>{this.value}</h5>
+                
+            </>
+        )
+    }
+}
+
+export default Geocode
+
+
+////
+import React from 'react';
+
+class GetRequestSetHeaders extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            totalReactPackages: null
+        };
+    }
+
+    componentDidMount() {
+        // GET request using fetch with set headers
+        const headers = { 'Content-Type': 'application/json' }
+        fetch('https://reqres.in/api/get', { headers })
+            .then(response => response.json())
+            .then(data => this.setState({ totalReactPackages: data.data[0]["name"] }));
+    }
+
+    render() {
+        const { totalReactPackages } = this.state;
+        return (
+            <div className="card text-center m-3">
+                <h5 className="card-header">GET Request with Set Headers</h5>
+                <div className="card-body">
+                    Total react packages: {totalReactPackages}
+                </div>
+            </div>
+        );
+    }
+}
+
+
+
+export { GetRequestSetHeaders }; 
+
+
+/// Works !!! <From trial.js>
+
+import React from 'react';
+
+class GetRequest extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            fin: null
+        };
+    }
+
+    componentDidMount() {
+
+    const headers = { 'Authorization': 'Bearer eyJhbGciOiJSUzUxMiIsImN0eSI6IkpXVCIsImlzcyI6IkhFUkUiLCJhaWQiOiJMM0pCbkZ1emEyaURadzZFVUdWTSIsImlhdCI6MTYyNzgyNTk1NSwiZXhwIjoxNjI3OTEyMzU1LCJraWQiOiJqMSJ9.ZXlKaGJHY2lPaUprYVhJaUxDSmxibU1pT2lKQk1qVTJRMEpETFVoVE5URXlJbjAuLkdQR3VYdE92NS1GVnBJMTFJMzdUNncuR0NVREF6LUtxWllsam90aGRjNVpDQlg2bi1qYmVpdnA2aWlQYlRqRWNrZVI1R1BCSHk1RDZ1aFlDQi1hdzVkdExnaENlVUF4TmVRRjZsNjIyR3NjdEQ1bEtsVU54QVJjTjYzSWVIMWlqdHpJMHZXc2o3LUw2UXZfdHRmbDZOOGFodVNqVzJpVFpQV1pnR05GcDhvdG9nLlJGU1c2a1A0VmxtZGVuUnBNNU9ZVU1YWnRVc0NjcEtmU1k2Z2s1VWd2aDQ.czUmLZ15Y9I7T9vEaNnZqZSg2wTAlu7NollMpxFrK0wTf9sH4FjrpRhU6RT4BaMp4-GulhJJ_5gq8dxfUFe8plEmalDlvYg_HeoSx5mJFCuPsg3LG3cDzlP3B7TO2YQ4bnjwbLIAG_YD6AwXrohcYx2DoDh7lKe-KdYYEbhBI8SMwMmEpbNzy-4F6_wVwnB4nNohXfjva_TWS2wzruai8UyfiNkizK8M1qBuakyt4ty_bUSp3B3azOb36g_E0f1zX_SsJlyJ03-C2P1CE_qy0ahIJ2lrOo5jUQWU7WZQ_kWdOYMHbhh6K4TITnXuvxzyyXa_ADLXmBEzsib-LrMvIg' }
+
+    fetch(`https://geocode.search.hereapi.com/v1/geocode?q=${this.props.q}`, { headers})
+        .then(response => response.json())
+        .then(data => this.setState({ fin: data.items[0]["title"] }));
+
+        
+    }
+
+    render() {
+        const { fin } = this.state;
+        return (
+            <div className="card text-center m-3">
+                <h5 className="card-header">Area to coordinates</h5>
+                <div className="card-body">
+                    Total: {fin}
+                </div>
+            </div>
+        );
+    }
+}
+
+export { GetRequest }; 
+

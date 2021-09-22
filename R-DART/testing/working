@@ -1,0 +1,55 @@
+import React, { useState } from 'react';
+// JS
+// const input = document.getElementById('myText');
+// const inputValue = input.value
+// React
+// value, onChange
+
+const ControlledInputs = () => {
+  const [location, setlocation] = useState('');
+  const [area, setarea] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (location) {
+      const loc = { id: new Date().getTime().toString(), location};
+      console.log(loc);
+      setarea((area) => {
+        return [...area, loc];
+      });
+      setlocation('');
+    } else {
+      console.log('empty values');
+    }
+  };
+  return (
+    <>
+      <article>
+        <form className='form' onSubmit={handleSubmit}>
+          <div className='form-control'>
+            <label htmlFor='location'> Location: </label>
+            <input
+              type='text'
+              id='location'
+              name='location'
+              value={location}
+              onChange={(e) => setlocation(e.target.value)}
+            />
+          </div>
+
+          <button type='submit'>Get Coordinates</button>
+        </form>
+        {area.map((loc, index) => {
+          const { id, location} = loc;
+          return (
+            <div className='item' key={id}>
+              <h4>{location}</h4>
+            </div>
+          );
+        })}
+      </article>
+    </>
+  );
+};
+
+export default ControlledInputs;
