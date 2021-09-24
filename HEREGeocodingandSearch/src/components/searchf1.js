@@ -1,11 +1,8 @@
 import React, { useState} from 'react';
-import raw from 'raw.macro';
 import { Button,TextInput, Form, Loading, ToastNotification } from 'carbon-components-react';
 import {DataTable,Table,TableHead,TableRow,TableHeader,TableBody,TableCell,TableContainer} from 'carbon-components-react';
 
-const authtoken = raw('./auth.txt');
-
-function Search1(){
+function Search1(authtoken){
 
   const [location, setlocation] = useState('');
   const [areaquery, setareaquery] = useState('');
@@ -34,7 +31,7 @@ function Search1(){
 
         try{
         
-            const headers = {'Authorization' : authtoken}
+            let headers = {'Authorization' : authtoken['authtoken']}
             let response = await fetch(`https://geocode.search.hereapi.com/v1/geocode?q=${searchstr}`,{ headers})
             let result = await response.json();
 

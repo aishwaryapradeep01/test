@@ -1,11 +1,9 @@
 import React, { useState} from 'react';
-import raw from 'raw.macro';
 import { Button,TextInput, Form, Loading, ToastNotification } from 'carbon-components-react';
 import {DataTable,Table,TableHead,TableRow,TableHeader,TableBody,TableCell,TableContainer} from 'carbon-components-react';
 
-const authtoken = raw('./auth.txt');
 
-function Alertw() {
+function Alertw(authtoken) {
 
   const [location, setlocation] = useState('');
   const [alertdata, setalertdata] = useState('');
@@ -27,7 +25,7 @@ function Alertw() {
 
         try{
         
-            const headers = {'Authorization' : authtoken}
+            let headers = {'Authorization' : authtoken['authtoken']}
             let response = await fetch(`https://weather.cc.api.here.com/weather/1.0/report.json?product=alerts&name=${location}`,{ headers})
             let result = await response.json();
             

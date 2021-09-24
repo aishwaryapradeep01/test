@@ -1,11 +1,8 @@
 import React, { useState} from 'react';
-import raw from 'raw.macro';
 import { Button,TextInput, Form, Loading, ToastNotification } from 'carbon-components-react';
 import {DataTable,Table,TableHead,TableRow,TableHeader,TableBody,TableCell,TableContainer} from 'carbon-components-react';
 
-const authtoken = raw('./auth.txt');
-
-function Search2() {
+function Search2(authtoken) {
 
   const [latitude, setlatitude] = useState('');
   const [longitude, setlongitude] = useState('');
@@ -37,7 +34,7 @@ function Search2() {
 
         try{
         
-            const headers = {'Authorization' : authtoken}
+            let headers = {'Authorization' : authtoken['authtoken']}
             let response = await fetch(`https://discover.search.hereapi.com/v1/discover?q=${areaquery}&at=${locationstr}`,{ headers})
             let result = await response.json();
 

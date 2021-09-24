@@ -1,18 +1,14 @@
 import React, { useState} from 'react';
-import raw from 'raw.macro';
 import { Button, TextInput, Form, Loading, ToastNotification } from 'carbon-components-react';
 import {DataTable,Table,TableHead,TableRow,TableHeader,TableBody,TableCell,TableContainer} from 'carbon-components-react';
 
-
-const authtoken = raw('./auth.txt');
-
-function Geocode2() {
+function Geocode2(authtoken) {
 
   const [latitude, setlatitude] = useState('');
   const [longitude, setlongitude] = useState('');
   const [geocodeobj, setGeocodeobj] = useState({});
   const [isLoading,setLoading] = useState(false);
-  
+
   const [errtext, seterrtext] = useState('A valid value is required');
   const [buttonstate, setbuttonstate] = useState(false);
   const [lterrstate, setlterrstate] = useState(false);
@@ -35,7 +31,7 @@ function Geocode2() {
 
         try{
         
-            const headers = {'Authorization' : authtoken}
+            let headers = {'Authorization' : authtoken['authtoken']}
             let response = await fetch(`https://revgeocode.search.hereapi.com/v1/revgeocode?at=${locationstr}`,{ headers})
             let result = await response.json();
 

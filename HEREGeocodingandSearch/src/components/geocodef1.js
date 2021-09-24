@@ -1,12 +1,12 @@
 import React, { useState} from 'react';
-import raw from 'raw.macro';
+// import raw from 'raw.macro';
 import { Button,TextInput, Form, Loading, ToastNotification } from 'carbon-components-react';
 import {DataTable,Table,TableHead,TableRow,TableHeader,TableBody,TableCell,TableContainer} from 'carbon-components-react';
 
 
-const authtoken = raw('./auth.txt');
+// const authtoken = raw('./auth.txt');
 
-function Geocode() {
+function Geocode(authtoken) {
   const [location, setlocation] = useState('');
   const [geocodeobj, setGeocodeobj] = useState({});
   const [isLoading,setLoading] = useState(false);
@@ -26,7 +26,7 @@ function Geocode() {
         const areaToCoord = async() => {
 
         try{
-            const headers = {'Authorization' : authtoken}
+            let headers = {'Authorization' : authtoken['authtoken']}
             let response = await fetch(`https://geocode.search.hereapi.com/v1/geocode?q=${location}`,{ headers})
             let result = await response.json();
 
